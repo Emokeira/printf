@@ -2,6 +2,10 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <string.h>
+#include <stddef.h>
+#include <unistd.h>
+
 /**
  * struct print - Struct for handling format specifiers
  * @t: The format specifier
@@ -24,5 +28,7 @@ extern print_t handlers[NUM_HANDLERS];
 int _printf(const char *format, ...);
 int print_s(va_list output);
 int print_c(va_list output);
+
+int _myPuchar(char c);
 
 #endif
