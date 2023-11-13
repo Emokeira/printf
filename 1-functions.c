@@ -8,6 +8,7 @@
  */
 
 int print_b(HandlerArgs args)
+
 {
 	unsigned int custom_b = va_arg(args.output, unsigned int);
 	unsigned int temp1 = custom_b;
@@ -38,7 +39,8 @@ int print_b(HandlerArgs args)
  * Return: The number of characters printed excluding the null byte
  */
 
-int print_u(HandlerAgrs args)
+int print_u(HandlerArgs args)
+
 {
 	unsigned int custom_u = va_arg(args.output, unsigned int);
 	unsigned int temp = custom_u;
@@ -49,7 +51,7 @@ int print_u(HandlerAgrs args)
 		digit_count++;
 	} while  (temp != 0);
 
-	if (digit_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start)
+	if (digit_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
 			return (-1);
 	j = digit_count - 1;
 	do {
@@ -59,6 +61,7 @@ int print_u(HandlerAgrs args)
 	} while (custom_u != 0);
 	args.buffer_ptr[digit_count] = '\0';
 	args.buffer_ptr += digit_count;
+
 	return (digit_count);
 }
 
@@ -69,6 +72,7 @@ int print_u(HandlerAgrs args)
  * Return: The number of characters printed excluding the null byte
  */
 int print_o(HandlerArgs args)
+
 {
 	unsigned int custom_o = va_arg(args.output, unsigned int);
 	unsigned int temp = custom_o;
@@ -79,7 +83,7 @@ int print_o(HandlerArgs args)
 		octal_count++;
 	} while (temp != 0);
 
-	if (octal_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start)
+	if (octal_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
 			return (-1);
 
 	k = octal_count - 1;
@@ -99,7 +103,8 @@ int print_o(HandlerArgs args)
  *
  * Return: The number of characters printed excluding the null byte
  */
-int print_x(HandlersArgs args)
+int print_x(HandlerArgs args)
+
 {
 	unsigned int custom_x = va_arg(args.output, unsigned int);
 	unsigned int temp = custom_x;
@@ -126,7 +131,7 @@ int print_x(HandlersArgs args)
 		a--;
 	} while (custom_x != 0);
 	args.buffer_ptr[hex_count] = '\0';
-	args.buffer += hex_count;
+	args.buffer_ptr += hex_count;
 	return (hex_count);
 }
 
@@ -136,7 +141,8 @@ int print_x(HandlersArgs args)
  *
  * Return: the number of characters printed excluding the null byte
  */
-int print_X(HandlersArgs args)
+int print_X(HandlerArgs args)
+
 {
 	unsigned int custom_X = va_arg(args.output, unsigned int);
 	unsigned int temp = custom_X;
@@ -147,7 +153,7 @@ int print_X(HandlersArgs args)
 		heX_count++;
 	} while (temp != 0);
 
-	if (he_Xcount + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
+	if (heX_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
 		return (-1);
 
 	y = heX_count - 1;

@@ -36,7 +36,7 @@ typedef struct print
 
 } print_t;
 
-#define NUM_HANDLERS 5
+#define NUM_HANDLERS 10 
 
 extern print_t handlers[NUM_HANDLERS];
 
