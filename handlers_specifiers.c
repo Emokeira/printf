@@ -2,8 +2,10 @@
 
 /**
  * handle_specifier - Handles the specified format specifier.
- *
-int handle_specifier(char specifier, va_list args, char *buffer, size_t *buf_len)
+ */
+
+int handle_specifier(char specifier, va_list args,
+		char *buffer, size_t *buf_len)
 
 {
 	size_t i;
@@ -13,15 +15,15 @@ int handle_specifier(char specifier, va_list args, char *buffer, size_t *buf_len
 	{
 		if (specifier == handlers[i].t[0])
 		{
+
 		HandlerArgs handler_args;
 		va_copy(handler_args.output, args);
 		handler_args.buffer_ptr = buffer + *buf_len;
 		handler_args.buffer_start = buffer;
-	
 		len = handlers[i].f(handler_args);
 
 		if (len < 0)
-			return -1;
+			return (-1);
 
 		*buf_len += len;
 		return (len);
