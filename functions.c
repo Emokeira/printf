@@ -8,6 +8,7 @@
  */
 
 int print_s(HandlerArgs args)
+
 {
 	char *str = va_arg(args.output, char*);
 	size_t str_len, remaining_space;
