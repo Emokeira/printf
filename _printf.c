@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 
 	char buffer[BUFFER_SIZE];
 	size_t buf_len = 0;
-	int total_len = 0, _len;
+	int total_len = 0, handle_s_result = 0;
 
 	va_start(output, format);
 
@@ -24,12 +24,14 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%' && *(format + 1) != '\0')
 		{
-			_len += handle_s(*(++format), output, buffer, &buf_len);
-			if (_len < 0)
+			handle_s_result += handle_s(*(format + 1), output, buffer, &buf_len);
+			if (handle_s_result < 0)
 			{
+				va_end(output);
 				return (-1);
 			}
-				total_len += _len;
+			total_len += handle_s_result;
+			format++;
 		}
 		else
 		{

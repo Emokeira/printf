@@ -18,23 +18,16 @@ int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
 
 {
 	size_t i;
-	int len;
+	int len = -1;
 	HandlerArgs handler_args = {0};
 
-	if (specifier == '%')
-	{
-		len = print_percent(handler_args);
-	}
-	else
-	{
 	for (i = 0; i < NUM_HANDLERS; i++)
 	{
 		if (specifier == handlers[i].t[0])
 		{
-
-		va_copy(handler_args.output, args);
-		handler_args.buffer_ptr = buffer + *buf_len;
-		handler_args.buffer_start = buffer;
+			va_copy(handler_args.output, args);
+			handler_args.buffer_ptr = buffer + *buf_len;
+			handler_args.buffer_start = buffer;
 
 		len = handlers[i].f(handler_args);
 
@@ -45,14 +38,10 @@ int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
 		break;
 		}
 	}
-	}
-
-	if (1>= BUFFER_SIZE - (*buf_len))
+	if (i == NUM_HANDLERS)
 	{
-		write(1, buffer, *buf_len);
-		*buf_len = 0;
+		buffer[(*buf_len)++] = '%';
+		buffer[(*buf_len)++] = specifier;
 	}
-	buffer[(*buf_len)++] = specifier;
-
 	return (len);
 }

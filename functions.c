@@ -37,12 +37,21 @@ int print_s(HandlerArgs args)
 	}
 }
 
+/**
+ * print_percent - Add % character to the buffer if there's space.
+ * @args: HandlerArgs structure containg output, buffer pointer and buffer start.
+ *
+ * Return: returns %' if was successful and -1 if there's no space.
+ **/
+
 int print_percent(HandlerArgs args)
 
 {
-	if (1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
-		return (-1);
-	*(args.buffer_ptr++) = '%';
+	if (1 <= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
+	{
+		*(args.buffer_ptr++) = '%';
+		return (1);
+	}
 
-	return (1);
+	return (-1);
 }
