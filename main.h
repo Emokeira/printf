@@ -16,7 +16,7 @@
  * @buffer_ptr: Pointers to the buffer for formatted output
  * @buffer_start: Pointer to the start of the buffer
  **/
-typedef struct
+typedef struct HandlerArgs
 {
 	va_list output;
 	char *buffer_ptr;
@@ -36,7 +36,7 @@ typedef struct print
 
 } print_t;
 
-#define NUM_HANDLERS 2 
+#define NUM_HANDLERS 5
 
 extern print_t handlers[NUM_HANDLERS];
 
