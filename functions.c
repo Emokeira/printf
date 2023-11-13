@@ -2,31 +2,36 @@
 
 /**
  * print_s - Prints a string
- * @output: A va_list containing the string to be printed
+ * @args: Handle arguments containing va_list and buffer poiner
  *
- * Return: The number of characters printed(excluding null byte).
+ * Return: number of characters printed (excluding the null byte)
  */
 
-int print_s(va_list output)
+int print_s(HandlerArgs args)
 {
-	char *str = va_arg(output, char);
+	char *str = va_arg(args.output, char*);
+	size_t str_len, remaining_space;
 
 	if (str == NULL)
+	{
 		return (write(1, "(nil)", 5));
+	}
 	else
-		return (write(1, str, strlen(str)));
-}
+	{
+		str_len = strlen(str);
+		remaining_space = BUFFER_SIZE - (args.buffer_ptr - args.buffer_start);
 
-/**
- * print_c - Prints a character
- * @output: A va_list containing the character to be printed
- *
- * Return: The number of characters printed(excluding null byte)
- */
-
-int print_c(va_list output)
-{
-	char custom_c = va_arg(output, int);
-
-	return (_myPutchar(custom_c));
+		if (str_len < remaining_space)
+		{
+			memcpy(args.buffer_ptr, str, str_len);
+			args.buffer_ptr += str_len;
+			return (str_len);
+		}
+		else
+		{
+			memcpy(args.buffer_ptr, str, remaining_space - 1);
+			args.buffer_ptr += remaining_space - 1;
+			return (-1); /*Buffer overflow, handle accordingly */
+		}
+	}
 }
