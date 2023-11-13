@@ -40,7 +40,7 @@ typedef struct print
 
 extern print_t handlers[NUM_HANDLERS];
 
-int handle_specifier(char specifier, va_list args, char *buffer, size_t *buf_len);
+int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len);
 
 /* function prototypes for format specifiers */
 
