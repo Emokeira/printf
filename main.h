@@ -32,11 +32,11 @@ typedef struct
 typedef struct print
 {
 	char *t;
-	int (*f)(va_list);
+	int (*f)(HandlerArgs);
 
 } print_t;
 
-#define NUM_HANDLERS 8
+#define NUM_HANDLERS 2 
 
 extern print_t handlers[NUM_HANDLERS];
 
@@ -50,8 +50,8 @@ int print_c(HandlerArgs args);
 int print_d_i(HandlerArgs args);
 int print_u(HandlerArgs args);
 int print_b(HandlerArgs args);
-int print _o(HandlerArgs args);
-int print_x(HanderArgs args);
+int print_o(HandlerArgs args);
+int print_x(HandlerArgs args);
 int print_X(HandlerArgs args);
 
 int _printf(const char *format, ...);

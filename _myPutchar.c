@@ -1,4 +1,4 @@
-include <unistd.h>
+#include "main.h"
 
 /**
  * _myPutchar - writes a character to the standard output
