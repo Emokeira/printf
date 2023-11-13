@@ -36,3 +36,13 @@ int print_s(HandlerArgs args)
 		}
 	}
 }
+
+int print_percent(HandlerArgs args)
+
+{
+	if (1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
+		return (-1);
+	*(args.buffer_ptr++) = '%';
+
+	return (1);
+}

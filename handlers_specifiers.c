@@ -22,7 +22,11 @@ int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
 
 	for (i = 0; i < NUM_HANDLERS; i++)
 	{
-		if (specifier == handlers[i].t[0])
+		if (specifier == '%')
+		{
+			len = print_percent(handler_args);
+		}
+		else (specifier == handlers[i].t[0])
 		{
 		HandlerArgs handler_args;
 
@@ -39,6 +43,13 @@ int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
 		return (len);
 		}
 	}
+
+	if (1>= BUFFER_SIZE - (*buf_len))
+	{
+		write(1, buffer, *buf_len);
+		*buf_len = 0;
+	}
+	buffer[(*buf_len)++] = specifier;
 
 	return (0);
 }
