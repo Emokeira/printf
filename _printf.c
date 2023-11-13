@@ -8,7 +8,6 @@
  **/
 
 int _printf(const char *format, ...)
-
 {
 	va_list output;
 
@@ -17,7 +16,6 @@ int _printf(const char *format, ...)
 	int total_len = 0, handle_s_result = 0;
 
 	va_start(output, format);
-
 	if (format == NULL)
 		return (-1);
 	while (*format)
@@ -51,7 +49,6 @@ int _printf(const char *format, ...)
 		write(1, buffer, buf_len);
 		buf_len = 0;
 	}
-
 	va_end(output);
 	return (total_len);
 }
