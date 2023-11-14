@@ -1,16 +1,6 @@
 #include "main.h"
 
-print_t handlers[NUM_HANDLERS] = {
-	{"s", print_s},
-	{"%", print_percent},
-	{"c", print_c},
-	{"d", print_d_i},
-	{"i", print_d_i},
-	{"b", print_b},
-	{"u", print_u},
-	{"X", print_X},
-	{"o", print_o},
-};
+
 
 /**
  * handle_s - Handles the specified format specifier.
@@ -29,6 +19,17 @@ print_t handlers[NUM_HANDLERS] = {
 int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
 
 {
+	print_t handlers[NUM_HANDLERS] = {
+	{"s", print_s},
+	{"%", print_percent},
+	{"c", print_c},
+	{"d", print_d_i},
+	{"i", print_d_i},
+	{"b", print_b},
+	{"u", print_u},
+	{"X", print_X},
+	{"o", print_o},
+};
 	size_t i;
 	int len = -1;
 	HandlerArgs handler_args = {0};
