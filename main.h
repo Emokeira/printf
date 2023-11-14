@@ -36,7 +36,7 @@ typedef struct print
 
 } print_t;
 
-#define NUM_HANDLERS 10
+#define NUM_HANDLERS 11
 
 print_t handlers[NUM_HANDLERS];
 
@@ -53,6 +53,7 @@ int print_b(HandlerArgs args);
 int print_o(HandlerArgs args);
 int print_x(HandlerArgs args);
 int print_X(HandlerArgs args);
+int print_S(HandlerArgs args);
 
 int _printf(const char *format, ...);
 

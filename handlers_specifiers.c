@@ -29,6 +29,7 @@ int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
 	{"u", print_u},
 	{"X", print_X},
 	{"o", print_o},
+	{"S", print_S},
 };
 	size_t i;
 	int len = -1;

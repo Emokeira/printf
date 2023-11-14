@@ -10,11 +10,7 @@
 
 int print_percent(HandlerArgs args)
 {
-	if (BUFFER_SIZE - (args.buffer_ptr - args.buffer_start) >= 1)
-	{
-		*(args.buffer_ptr++) = '%';
-		return (1);
-	}
+	args.buffer_ptr[0] = '%';
 
-	return (-1);
+	return (1);
 }
