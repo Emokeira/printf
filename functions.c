@@ -67,7 +67,7 @@ int print_percent(HandlerArgs args)
 int print_c(HandlerArgs args)
 
 {
-	if (1 <= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
+	if ((BUFFER_SIZE - (args.buffer_ptr - args.buffer_start)) >= 1)
 	{
 		char custom_c = va_arg(args.output, int);
 
@@ -93,8 +93,7 @@ int print_d_i(HandlerArgs args)
 	int int_len = (temp < 0) ? 1 : 0;
 	int required_size, converted_len;
 
-	do
-	{
+	do {
 		temp /= 10;
 		int_len++;
 	} while (temp != 0);
@@ -106,7 +105,8 @@ int print_d_i(HandlerArgs args)
 	if (required_size >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
 		return (-1);
 
-	converted_len = snprintf(args.buffer_ptr, BUFFER_SIZE - (args.buffer_ptr - args.buffer_start), "%d", custom_d_i);
+	converted_len = snprintf(args.buffer_ptr,
+			BUFFER_SIZE - (args.buffer_ptr - args.buffer_start), "%d", custom_d_i);
 
 	if (converted_len < 0)
 		return (-1);

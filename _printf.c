@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _printf - Custom printf function  
+ * _printf - Custom printf function
  * @format: Format string
  *
  * Return: Number of characters printed (excluding null byte)
@@ -43,12 +43,8 @@ int _printf(const char *format, ...)
 		}
 	format++;
 	}
-	if (buf_len > 0)
-	{
-		total_len += buf_len;
-		write(1, buffer, buf_len);
-		buf_len = 0;
-	}
+	total_len += (buf_len > 0) ? write(1, buffer, buf_len) : 0;
+
 	va_end(output);
 	return (total_len);
 }

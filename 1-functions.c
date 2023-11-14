@@ -52,7 +52,7 @@ int print_u(HandlerArgs args)
 	} while  (temp != 0);
 
 	if (digit_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
-			return (-1);
+		return (-1);
 	j = digit_count - 1;
 	do {
 		args.buffer_ptr[j] = '0' + (custom_u % 10);
@@ -84,7 +84,7 @@ int print_o(HandlerArgs args)
 	} while (temp != 0);
 
 	if (octal_count + 1 >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
-			return (-1);
+		return (-1);
 
 	k = octal_count - 1;
 	do {

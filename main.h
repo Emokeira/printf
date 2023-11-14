@@ -36,9 +36,9 @@ typedef struct print
 
 } print_t;
 
-#define NUM_HANDLERS 10 
+#define NUM_HANDLERS 10
 
-extern print_t handlers[NUM_HANDLERS];
+print_t handlers[NUM_HANDLERS];
 
 int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len);
 
