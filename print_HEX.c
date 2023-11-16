@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * print_X- Cconverts and prints an unsigned integer to hexadecimal (uppercase)
+ * @args: variable argument list containing the unsigned integer
+ *
+ * Return: Number of characters printed (X_len)
+ */
+
 int print_X(va_list args)
 
 {
@@ -7,8 +14,7 @@ int print_X(va_list args)
 	int X_len = 0, i, j, digit;
 	char buffer[BUFFER_SIZE];
 
-	do 
-	{
+	do {
 		digit = value % 16;
 		buffer[i++] = (digit < 10) ? ('0' + digit) : ('A' + digit - 10);
 		value /= 16;

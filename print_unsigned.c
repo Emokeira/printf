@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * print_u - converts and prints an unsigned integer
+ * @args: va_list containing the unsigned integer to be converted
+ *
+ * Return: Number of characers printed (u_len)
+ */
+
 int print_u(va_list args)
 
 {

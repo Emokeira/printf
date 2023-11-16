@@ -36,7 +36,7 @@ int print_d(va_list args)
  * print_i - Prints an integer number
  * @args: Handles arguments containing Va_list and buffer pointer
  *
- * Retrurn: The number of characters printed excluding null bytes
+ * Return: The number of characters printed excluding null bytes
  **/
 
 int print_i(va_list args)

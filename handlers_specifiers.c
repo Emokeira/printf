@@ -24,32 +24,41 @@ int handle_s(char specifier, va_list args, char *buffer, int *buf_len)
 	switch (specifier)
 	{
 		case 'c':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%c", va_arg(args, int));
+			result_len = snprintf(buffer + *buf_len,
+			BUFFER_SIZE - *buf_len, "%c", va_arg(args, int));
 		break;
 		case 'd':
 		case 'i':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%d", va_arg(args, int));
+			result_len = snprintf(buffer + *buf_len,
+			BUFFER_SIZE - *buf_len, "%d", va_arg(args, int));
 		break;
 		case 'o':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%o", va_arg(args, unsigned int));
+			result_len = snprintf(buffer + *buf_len,
+		BUFFER_SIZE - *buf_len, "%o", va_arg(args, unsigned int));
 		break;
 		case 'p':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%p", va_arg(args, void *));
+			result_len = snprintf(buffer + *buf_len,
+			BUFFER_SIZE - *buf_len, "%p", va_arg(args, void *));
 		break;
 		case 'u':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%u", va_arg(args, unsigned int ));
+			result_len = snprintf(buffer + *buf_len,
+		BUFFER_SIZE - *buf_len, "%u", va_arg(args, unsigned int));
 		break;
 		case 'X':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%X", va_arg(args, unsigned int));
+			result_len = snprintf(buffer + *buf_len,
+		BUFFER_SIZE - *buf_len, "%X", va_arg(args, unsigned int));
 		break;
 		case 'x':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%x", va_arg(args, unsigned int));
+			result_len = snprintf(buffer + *buf_len,
+		BUFFER_SIZE - *buf_len, "%x", va_arg(args, unsigned int));
 		break;
 		case 's':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%s", va_arg(args, char *));
+			result_len = snprintf(buffer + *buf_len,
+		BUFFER_SIZE - *buf_len, "%s", va_arg(args, char *));
 		break;
 		case '%':
-			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%%");
+			result_len = snprintf(buffer + *buf_len,
+				BUFFER_SIZE - *buf_len, "%%");
 		break;
 		default:
 			fprintf(stderr, "%c\n", specifier);

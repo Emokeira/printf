@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * print_x - converts and prints an unsigned integer to hexadecimal(lowercase)
+ * @args: variable argument list containing the unsigned integer
+ *
+ * Return: Number of characters printed (x_len)
+ */
+
 int print_x(va_list args)
 
 {

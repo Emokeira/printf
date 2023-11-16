@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * print_p - converts and prints a pointer address in hexadecimal
+ * @args: a variable argument list with the pointer to be converted
+ *
+ * Return: number of characters printed (p_len)
+ */
+
 int print_p(va_list args)
 
 {
@@ -9,8 +16,7 @@ int print_p(va_list args)
 	uintptr_t value = (uintptr_t)ptr;
 	char buffer[BUFFER_SIZE];
 
-	do
-	{
+	do {
 		digit = value % 16;
 		buffer[i++] = (digit < 10) ? ('0' + digit) : ('a' + digit - 10);
 		value /= 16;

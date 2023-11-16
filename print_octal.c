@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * print_o - converts and prints an unsigned integer to octal
+ * @args: variable argument list containing the unsigned integer
+ *
+ * Return: Number of characters printed (o_len)
+ */
+
 int print_o(va_list args)
 
 {
@@ -7,8 +14,7 @@ int print_o(va_list args)
 	int o_len = 0, a = 0, b, digit_value;
 	char buffer[BUFFER_SIZE];
 
-	do
-	{
+	do {
 		digit_value = octal % 8;
 		buffer[a++] = '0' + digit_value;
 		octal /= 8;
