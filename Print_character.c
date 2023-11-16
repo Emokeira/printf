@@ -7,15 +7,13 @@
  * Return: The number of characters printed excluding null bytes
  */
 
-int print_c(HandlerArgs args)
+int print_c(va_list args)
 {
-	if (BUFFER_SIZE - (args.buffer_ptr - args.buffer_start) >= 1)
-	{
-		char custom_c = va_arg(args.output, int);
+		int custom_c = va_arg(args, int);
+		int c_len = 0;
 
-		*(args.buffer_ptr++) = custom_c;
-		return (1);
-	}
+		_myPutchar(custom_c);
+		c_len++;
 
-	return (-1);
+	return (0);
 }

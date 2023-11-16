@@ -16,46 +16,54 @@
  * Return: The number of characters written to the buffer, or -1 on failure
  **/
 
-int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len)
+int handle_s(char specifier, va_list args, char *buffer, int *buf_len)
 
 {
-	print_t handlers[NUM_HANDLERS] = {
-	{"s", print_s},
-	{"%", print_percent},
-	{"c", print_c},
-	{"d", print_d},
-	{"i", print_i},
-	{"b", print_b},
-	{"u", print_u},
-	{"X", print_X},
-	{"o", print_o},
-	{"S", print_S},
-};
-	size_t i;
-	int len = -1;
-	HandlerArgs handler_args = {0};
+	int result_len = 0;
 
-	for (i = 0; i < NUM_HANDLERS; i++)
+	switch (specifier)
 	{
-		if (specifier == handlers[i].t[0])
-		{
-			va_copy(handler_args.output, args);
-			handler_args.buffer_ptr = buffer + *buf_len;
-			handler_args.buffer_start = buffer;
-
-		len = handlers[i].f(handler_args);
-
-		if (len < 0)
-			return (-1);
-
-		*buf_len += len;
+		case 'c':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%c", va_arg(args, int));
 		break;
-		}
+		case 'd':
+		case 'i':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%d", va_arg(args, int));
+		break;
+		case 'o':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%o", va_arg(args, unsigned int));
+		break;
+		case 'p':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%p", va_arg(args, void *));
+		break;
+		case 'u':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%u", va_arg(args, unsigned int ));
+		break;
+		case 'X':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%X", va_arg(args, unsigned int));
+		break;
+		case 'x':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%x", va_arg(args, unsigned int));
+		break;
+		case 's':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%s", va_arg(args, char *));
+		break;
+		case '%':
+			result_len = snprintf(buffer + *buf_len, BUFFER_SIZE - *buf_len, "%%");
+		break;
+		default:
+			fprintf(stderr, "%c\n", specifier);
+		return (-1);
 	}
-	if (i == NUM_HANDLERS)
+	if (result_len < 0)
+		return (-1);
+
+	*buf_len += result_len;
+
+	if (*buf_len >= BUFFER_SIZE)
 	{
-		buffer[(*buf_len)++] = '%';
-		buffer[(*buf_len)++] = specifier;
+		write(1, buffer, *buf_len);
+		*buf_len = 0;
 	}
-	return (len);
+	return (result_len);
 }

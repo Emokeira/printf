@@ -7,6 +7,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdint.h>
 
 #define BUFFER_SIZE 1024
 
@@ -32,32 +33,30 @@ typedef struct HandlerArgs
 typedef struct print
 {
 	char *t;
-	int (*f)(HandlerArgs);
+	int (*f)(va_list args);
 
 } print_t;
 
-#define NUM_HANDLERS 11
-
-print_t handlers[NUM_HANDLERS];
-
-int handle_s(char specifier, va_list args, char *buffer, size_t *buf_len);
+int handle_s(char specifier, va_list args, char *buffer, int *buf_len);
 
 /* function prototypes for format specifiers */
 
-int print_percent(HandlerArgs args);
-int print_s(HandlerArgs args);
-int print_c(HandlerArgs args);
-int print_d(HandlerArgs args);
-int print_i(HandlerArgs args);
-int print_u(HandlerArgs args);
-int print_b(HandlerArgs args);
-int print_o(HandlerArgs args);
-int print_x(HandlerArgs args);
-int print_X(HandlerArgs args);
-int print_S(HandlerArgs args);
+int print_percent(va_list args);
+int print_s(va_list args);
+int print_c(va_list args);
+int print_d(va_list args);
+int print_i(va_list args);
+int print_u(va_list args);
+int print_b(va_list args);
+int print_o(va_list args);
+int print_x(va_list args);
+int print_X(va_list args);
+int print_S(va_list args);
+int print_p(va_list args);
 
+void reverseDigits(char *buffer, int length);
 int _printf(const char *format, ...);
 
-int _myPuchar(char c);
+int _myPutchar(char c);
 
 #endif

@@ -7,29 +7,30 @@
  * Return: The number of characters printed excluding null bytes
  */
 
-int print_d(HandlerArgs args)
+int print_d(va_list args)
 {
-	int custom_d = va_arg(args.output, int);
-	int temp = custom_d;
-	int int_len = (temp < 0) ? 1 : 0;
-	int converted_len;
+	int num_d = va_arg(args, int);
+	int num_len = 0;
 
-	do {
-		temp /= 10;
-		int_len++;
-	} while (temp != 0);
-
-	if (int_len >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
-		return (-1);
-
-	converted_len = snprintf(args.buffer_ptr, BUFFER_SIZE -
-			(args.buffer_ptr - args.buffer_start), "%d",  custom_d);
-	if (converted_len < 0)
-		return (-1);
-
-	args.buffer_ptr += converted_len;
-
-	return (converted_len);
+	if (num_d < 0)
+	{
+		num_d = -num_d;
+		num_len++;
+	}
+	if (num_d == 0)
+	{
+		_myPutchar('0');
+		num_len++;
+	}
+	else
+	{
+		while (num_d > 0)
+		{
+			num_d /= 10;
+			num_len++;
+		}
+	}
+	return (num_len);
 }
 /**
  * print_i - Prints an integer number
@@ -38,29 +39,30 @@ int print_d(HandlerArgs args)
  * Retrurn: The number of characters printed excluding null bytes
  **/
 
-int print_i(HandlerArgs args)
+int print_i(va_list args)
 
 {
-	int custom_i = va_arg(args.output, int);
-	int temp = custom_i;
-	int int_len = (temp < 0) ? 1 : 0;
-	int converted_len;
+	int num_d = va_arg(args, int);
+	int num_len = 0;
 
-	do {
-		temp /= 10;
-		int_len++;
-	} while (temp != 0);
-
-	if (int_len >= BUFFER_SIZE - (args.buffer_ptr - args.buffer_start))
-		return (-1);
-
-	converted_len = snprintf(args.buffer_ptr, BUFFER_SIZE -
-		(args.buffer_ptr - args.buffer_start), "%d", custom_i);
-	if (converted_len < 0)
-		return (-1);
-
-	args.buffer_ptr += converted_len;
-
-	return (converted_len);
+	if (num_d < 0)
+	{
+		num_d = -num_d;
+		num_len++;
+	}
+	if (num_d == 0)
+	{
+		_myPutchar('0');
+		num_len++;
+	}
+	else
+	{
+		while (num_d > 0)
+		{
+			num_d /= 10;
+			num_len++;
+		}
+	}
+	return (num_len);
 }
 

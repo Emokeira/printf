@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	va_list output;
 
 	char buffer[BUFFER_SIZE];
-	size_t buf_len = 0;
+	int buf_len = 0;
 	int total_len = 0, handle_s_result = 0;
 
 	va_start(output, format);
@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 			buf_len = 0;
 		}
 		}
-	format++;
+		format++;
 	}
 	total_len += (buf_len > 0) ? write(1, buffer, buf_len) : 0;
 
